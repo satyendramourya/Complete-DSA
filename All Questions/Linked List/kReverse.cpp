@@ -1,3 +1,33 @@
+#include <iostream>
+#include <map>
+
+using namespace std;
+
+class Node
+{
+public:
+    int data;
+    Node *next;
+
+    Node(int data)
+    {
+        this->data = data;
+        this->next = NULL;
+    }
+
+    ~Node()
+    {
+        int value = this->data;
+        // memory free
+        if (this->next != NULL)
+        {
+            delete next;
+            this->next = NULL;
+        }
+        cout << "memory is free " << value << endl;
+    }
+};
+
 Node *kReverse(Node *head, int k)
 {
     // base case
@@ -25,7 +55,7 @@ Node *kReverse(Node *head, int k)
     // step 2: recursion sb smbhallega;
     if (head != NULL)
     {
-        head->next = kReverse(Node * next);
+        head->next = kReverse(next, k);
     }
 
     // step 3: return head of reversed list;
